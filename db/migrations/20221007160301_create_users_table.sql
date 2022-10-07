@@ -9,8 +9,8 @@ CREATE TABLE users (
   is_admin TINYINT NOT NULL DEFAULT 0,
   created_at DATETIME NOT NULL DEFAULT NOW(),
   updated_at DATETIME NULL ON UPDATE NOW(),
-  city_id INT NULL,
-  FOREIGN KEY (city_id) REFERENCES cities(id)
+  province_id INT NULL,
+  FOREIGN KEY (province_id) REFERENCES provinces(id)
 );
 
 -- migrate:down

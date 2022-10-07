@@ -22,10 +22,10 @@ CREATE TABLE hospitals (
   management_contact VARCHAR(30),
   management VARCHAR(30),
   standard_date VARCHAR(30),
-  city_id INT NOT NULL,
+  province_id INT NOT NULL,
   created_at DATETIME NOT NULL DEFAULT NOW(),
   updated_at DATETIME NULL ON UPDATE NOW(),
-  FOREIGN KEY (city_id) REFERENCES cities(id),
+  FOREIGN KEY (province_id) REFERENCES provinces(id),
   FOREIGN KEY (type_id) REFERENCES types(id)
 );
 
