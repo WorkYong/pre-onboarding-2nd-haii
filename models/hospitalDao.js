@@ -34,7 +34,8 @@ const createHospital = async (data) => {
   );
 };
 
-const getHospitalData = async (provinceId) => {  
+const getHospitalData = async (provinceId, reqQuery) => {  
+  const {name, representative, operatorcontact, type, doctor, nurse, socialworker} = reqQuery;
   let query = `SELECT
     h.name AS 치매센터명,
     t.name AS 치매센터유형,
@@ -58,11 +59,34 @@ const getHospitalData = async (provinceId) => {
     h.management AS 관리기관명,
     h.standard_date AS 데이터기준일자
   FROM hospitals AS h
-  JOIN types AS t ON t.id=h.type_id`;
+  JOIN types AS t ON t.id=h.type_id
+  WHERE 1`;
 
   if (provinceId) {
-    query += ` WHERE province_id = ${provinceId}`;
+    query += ` AND province_id = ${provinceId}`;
   }
+  if (name) {
+    query += ` AND h.name LIKE "%${name}%"`;
+  }
+  if (representative) {
+    query += ` AND h.representative LIKE "%${representative}%"`;
+  }
+  if (operatorcontact) {
+    query += ` AND h.operator_contact LIKE "%${operatorcontact}%"`;
+  }
+  if (type) {
+    query += ` AND t.name = "${type}"`;
+  }
+  if (doctor) {
+    query += ` AND h.doctor >= ${doctor}`;
+  }
+  if (nurse) {
+    query += ` AND h.nurse >= ${nurse}`;
+  }
+  if (socialworker) {
+    query += ` AND h.social_worker >= ${socialworker}`;
+  }
+
   query += ";"
   
   return await myDataSource.query(query);

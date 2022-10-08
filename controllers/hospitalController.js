@@ -11,13 +11,15 @@ const getHospitalDataController = async (req, res) => {
   //====페이로드예시===========
   const payLoad = {
     id: 1,
-    is_admin: 0,
-    province_id: 9,
+    is_admin: 1,
+    province_id: null,
   }
   //=======================
   const {is_admin, province_id} = payLoad;
 
-  const hospitalData = await hospitalService.getHospitalDataService(is_admin, province_id);
+  const reqQuery = req.query;
+
+  const hospitalData = await hospitalService.getHospitalDataService(is_admin, province_id, reqQuery);
 
   res.status(200).json({data: hospitalData});
 };

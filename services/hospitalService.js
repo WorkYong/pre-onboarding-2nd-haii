@@ -89,14 +89,14 @@ const hospitalDataService = async (recordData) => {
   }
 };
 
-const getHospitalDataService = async (isAdmin, provinceId) => {
+const getHospitalDataService = async (isAdmin, provinceId, reqQuery) => {
   if (isAdmin && provinceId) {
     throw new ErrorCreator("admin cannot have province_id", 400);
   }
   if (!isAdmin && !provinceId) {
     throw new ErrorCreator("province_id not provided", 400);
   }
-  return await hospitalDao.getHospitalData(provinceId);
+  return await hospitalDao.getHospitalData(provinceId, reqQuery);
 };
 
 module.exports = { 
