@@ -5,3 +5,5 @@ package-lock.json
 .env
 
 db/schema.sql
+
+*.xlsx
