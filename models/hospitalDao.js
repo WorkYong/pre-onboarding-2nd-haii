@@ -34,4 +34,22 @@ const createHospital = async (data) => {
   );
 };
 
-module.exports = { createHospital };
+const getAllHospitalData = async () => {
+  return await myDataSource.query(
+    `SELECT * FROM hospitals;`
+  );
+};
+
+const getHospitalData = async (provinceId) => {
+  return await myDataSource.query(
+    `SELECT * FROM hospitals
+    WHERE province_id = ?;
+    `,[provinceId]
+  );
+};
+
+module.exports = { 
+  createHospital,
+  getHospitalData,
+  getAllHospitalData
+};
