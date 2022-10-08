@@ -5,7 +5,7 @@ const hospitalRouter = require("../routes/hospitalRouter");
 const router = express.Router();
 
 router.use("/users", userRouter);
-//24시간뒤 api 이용바람
-router.use("/external-data-api", hospitalRouter);
+
+router.use("/hospital", hospitalRouter);
 
 module.exports = router;
