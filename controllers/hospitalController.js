@@ -11,8 +11,8 @@ const getHospitalDataController = async (req, res) => {
   //====페이로드예시===========
   const payLoad = {
     id: 1,
-    is_admin: 1,
-    province_id: null,
+    is_admin: 0,
+    province_id: 9,
   }
   //=======================
   const {is_admin, province_id} = payLoad;
