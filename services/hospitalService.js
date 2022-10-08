@@ -1,3 +1,4 @@
+const res = require("express/lib/response");
 const ErrorCreator = require("../middlewares/errorCreator");
 const hospitalDao = require("../models/hospitalDao");
 
@@ -96,7 +97,9 @@ const getHospitalDataService = async (isAdmin, provinceId, reqQuery) => {
   if (!isAdmin && !provinceId) {
     throw new ErrorCreator("province_id not provided", 400);
   }
-  return await hospitalDao.getHospitalData(provinceId, reqQuery);
+  const hospitalData = await hospitalDao.getHospitalData(provinceId, reqQuery);
+
+  return hospitalData
 };
 
 module.exports = { 
