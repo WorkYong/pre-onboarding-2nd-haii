@@ -56,14 +56,12 @@ const getHospitalData = async (provinceId) => {
     h.data AS 주요치매관리프로그램소개,
     h.management_contact AS 관리기관전화번호,
     h.management AS 관리기관명,
-    h.standard_date AS 데이터기준일자,
-    p.name AS 제공기관명
+    h.standard_date AS 데이터기준일자
   FROM hospitals AS h
-  JOIN types AS t ON t.id=h.type_id
-  JOIN provinces AS p ON p.id=h.province_id`;
+  JOIN types AS t ON t.id=h.type_id`;
 
   if (provinceId) {
-    query += `WHERE province_id = ${provinceId}`;
+    query += ` WHERE province_id = ${provinceId}`;
   }
   query += ";"
   
