@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const userDao = require("../models/userDao");
-const secretKey = process.env.secretKey
+const secretKey = process.env.jwt_secret_key
 
 const signIn = async (account, password) => {
 
