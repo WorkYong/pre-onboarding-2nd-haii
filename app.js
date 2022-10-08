@@ -5,7 +5,14 @@ const routes = require("./routes");
 
 const createApp = () => {
   const app = express();
-  app.use(logger("combined"), cors(), express.json(), routes);
+  app.use(
+    logger("combined"),
+    cors(),
+    express.json({
+      limit: "50mb",
+    }),
+    routes
+  );
 
   return app;
 };
