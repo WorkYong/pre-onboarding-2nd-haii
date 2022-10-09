@@ -1,5 +1,7 @@
 const ErrorCreator = require("../middlewares/errorCreator");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const secretKey = process.env.jwt_secret_key;
 const userDao = require("../models/userDao");
 
 const userSignupService = async (userData) => {
@@ -19,7 +21,7 @@ const userSignupService = async (userData) => {
   phoneNum = newPhoneNum;
   userData.phone_number = newPhoneNum;
 
-  const [accountCheck] = await userDao.getUserByAccount(account, email, phoneNum);
+  const [accountCheck] = await userDao.getUser(account, email, phoneNum);
   if (accountCheck) {
     throw new ErrorCreator("Already exist account or email or phone number", 400);
   }
@@ -70,6 +72,34 @@ const userSignupService = async (userData) => {
   await userDao.createUser(userData);
 };
 
+const signIn = async (account, password) => {
+  const user = await userDao.getUserByAccount(account);
+  if (!user) {
+    const err = new Error("INVAILD_ACCOUNT OR INVALID_PASSWORD");
+    err.statusCode = 400;
+    throw err;
+  }
+
+  const passwordCheck = bcrypt.compareSync(password, user.password);
+
+  if (!passwordCheck) {
+    const err = new Error("INVAILD_ACCOUNT OR INVALID_PASSWORD");
+    err.statusCode = 400;
+    throw err;
+  }
+
+  const token = jwt.sign(
+    {
+      userId: user.id,
+      isAdmin: user.is_admin,
+      provinceId: user.province_id,
+    },
+    secretKey
+  );
+
+  return token;
+};
 module.exports = {
   userSignupService,
+  signIn,
 };

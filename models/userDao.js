@@ -1,6 +1,6 @@
 const { myDataSource } = require("./common");
 
-const getUserByAccount = async (account, email, phoneNum) => {
+const getUser = async (account, email, phoneNum) => {
   return await myDataSource.query(
     `SELECT id FROM users WHERE account = ? OR email = ? OR phone_number = ?;
     `,
@@ -26,4 +26,15 @@ const createUser = async (data) => {
   });
 };
 
-module.exports = { getUserByAccount, createUser };
+const getUserByAccount = async (account) => {
+  const [user] = await myDataSource.query(
+    `
+      SELECT
+      * FROM users
+      WHERE account = ?`,
+    [account]
+  );
+  return user;
+};
+
+module.exports = { getUser, createUser, getUserByAccount };
