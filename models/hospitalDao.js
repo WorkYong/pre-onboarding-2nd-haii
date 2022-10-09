@@ -1,5 +1,13 @@
 const { myDataSource } = require("./common");
 
+const getHospitalData = async (data) => {
+  return await myDataSource.query(
+    `SELECT id FROM hospitals WHERE name = ?;
+    `,
+    [data]
+  );
+};
+
 const createHospital = async (data) => {
   await myDataSource.query(
     `INSERT INTO hospitals
@@ -34,4 +42,4 @@ const createHospital = async (data) => {
   );
 };
 
-module.exports = { createHospital };
+module.exports = { createHospital, getHospitalData };

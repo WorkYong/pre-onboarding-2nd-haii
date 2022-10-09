@@ -2,6 +2,18 @@ const ErrorCreator = require("../middlewares/errorCreator");
 const hospitalDao = require("../models/hospitalDao");
 
 const hospitalDataService = async (recordData) => {
+  const checkHospitalData = recordData.map((val) => {
+    const arr = [];
+    arr.push(val.치매센터명);
+    return arr;
+  });
+  for (let i in checkHospitalData) {
+    const [hospital] = await hospitalDao.getHospitalData(checkHospitalData[i][0]);
+    if (hospital) {
+      throw new ErrorCreator("Already exist hospital name", 400);
+    }
+  }
+
   recordData.map((val) => {
     if (val.치매센터유형 === "치매안심센터") {
       val.치매센터유형 = 1;
