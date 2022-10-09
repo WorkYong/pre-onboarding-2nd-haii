@@ -100,7 +100,42 @@ const signIn = async (account, password) => {
   return token;
 };
 
+const changeUserData = async (user_id, name, phone_number, province_id)=>{
+  const result = await isUnique(phone_number);
+  if(result){
+      const error = new Error(result.message);
+      error.statusCode = 404;
+      throw error;
+  }
+  let updateResult = null;
+  try{
+      const updateUserIsAdmin = await userDao.isAdmin(user_id);
+      
+      if(updateUserIsAdmin.length == 0){
+          updateResult = await userDao.userUpdate(user_id, name, phone_number, province_id);
+      }else{
+          updateResult = await userDao.userUpdate(user_id, name, phone_number, NULL);
+      }
+  }catch(err){
+      console.log(err)
+  }    
+  if(updateResult.changedRows == 0){
+      const error = new Error ("FAIL_USER_UPDATE")
+      error.statusCode = 405;
+      throw error;
+  }
+
+}
+
+async function isUnique(phone_number){
+  const resultByPhoneNumber = await userDao.getUserByPhoneNumber(phone_number);
+  if(resultByPhoneNumber[0].result == 1){
+      return { message: "USER_PHONE_NUMBER_DUPLICATE"}
+  }
+}
+
 module.exports = {
   userSignupService,
   signIn,
+  changeUserData,
 };
