@@ -101,10 +101,6 @@ const getHospitalList = async (provinceId, reqQuery) => {
 };
 
 module.exports = { 
-  createHospital,
-  getHospitalData
-};
-module.exports = { 
   createHospital, 
   getHospitalData,
   getHospitalList
