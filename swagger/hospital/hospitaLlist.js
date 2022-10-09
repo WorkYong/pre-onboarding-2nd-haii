@@ -3,10 +3,14 @@
 *
 * /hospital:
 *  get:
-*    security:
-*      - Authorization: []
 *    summary: "치매센터 리스트 검색 & 조회 기능"
 *    parameters:
+*       - in: header
+*         name: Authorization
+*         description: "인가에 필요한 토큰"
+*         required: true
+*         schema:
+*          type: string
 *       - in: query
 *         name: name
 *         schema:
@@ -41,10 +45,10 @@
 *         name: socialworker
 *         schema:
 *           type: integer
-*         description: 간호사 수가 해당숫자 이상인 센터 검색
+*         description: 사회복지사 수가 해당숫자 이상인 센터 검색
 *
 *    description: "본인의 담당지역만 조회 가능"
-*    tags: [ViewHospitalList]
+*    tags: [View Hospital List]
 *    responses:
 *      400:
 *        description: 관리자에게 담당지역이 있을때 / 관리자가 아닌데 담당지역이 없을때
