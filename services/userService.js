@@ -11,7 +11,6 @@ const signIn = async (account, password) => {
       err.statusCode = 400
       throw err
     }
-    
     const passwordCheck = bcrypt.compareSync(password, user.password)
   
     if (!passwordCheck) {

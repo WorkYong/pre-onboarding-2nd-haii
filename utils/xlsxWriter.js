@@ -8,14 +8,13 @@ const writeExcelFile = async (data) => {
         const columns = Object.keys(data[0]);
 
         worksheet.columns = columns.map((column) => ({
-        header: column, // 컬럼 이름
-        key: column, // data에서 컬럼의 값을 구분하기 위한 key
+        header: column, 
+        key: column, 
         }));
 
-        // 두 번째 줄부터 데이터 행들을 한꺼번에 입력
         worksheet.insertRows(2, data);
     }
-    const filename = `temp${new Date().getTime()}.xlsx`;
+    const filename = `치매센터${new Date().getTime()}.xlsx`;
     await workbook.xlsx.writeFile(filename); 
 };
 
