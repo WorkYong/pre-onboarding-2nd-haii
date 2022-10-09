@@ -11,9 +11,12 @@ const createApp = () => {
     express.json({
       limit: "50mb",
     }),
-    routes
+    routes,
+    express.static("public")
   );
 
+  const { swaggerUi, specs } = require("./swagger/swagger");
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
   return app;
 };
 
