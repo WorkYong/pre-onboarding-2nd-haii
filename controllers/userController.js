@@ -25,7 +25,7 @@ const changeUserData = async (req, res) => {
     res.status(403).json({message: "NOT_ADMIN"})
   }
   
-  const haskey = {user_id:false, name:false, phone_number:false, province_id:false}; 
+  const haskey = {user_id:false, name:false, phone_number:false}; 
   const requireKey = Object.keys(haskey);
 
   Object.entries(req.body).forEach((keyValue) => {

@@ -112,9 +112,10 @@ const changeUserData = async (user_id, name, phone_number, province_id)=>{
       const updateUserIsAdmin = await userDao.isAdmin(user_id);
       
       if(updateUserIsAdmin.length == 0){
-          updateResult = await userDao.userUpdate(user_id, name, phone_number, province_id);
+        updateResult = await userDao.userUpdate(user_id, name, phone_number, province_id);
       }else{
-          updateResult = await userDao.userUpdate(user_id, name, phone_number, NULL);
+        const province = null
+        updateResult = await userDao.userUpdate(user_id, name, phone_number, province);
       }
   }catch(err){
       console.log(err)
