@@ -224,4 +224,8 @@ http://localhost:8000/api-docs
 
 ### Postman
 
+김윤희 : ()  👉 [Postman API doc]
+박정용 : (로그인)  👉 [Postman API doc](https://documenter.getpostman.com/view/22204904/2s83ziN3eF)
+오지환 : ()  👉 [Postman API doc]
+음정민 : ()  👉 [Postman API doc]
 전준영 : (회원가입, 병원데이터생성) 👉 [Postman API doc](https://documenter.getpostman.com/view/22723440/2s83ziMP8u)
