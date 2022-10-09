@@ -1,3 +1,4 @@
+const res = require("express/lib/response");
 const ErrorCreator = require("../middlewares/errorCreator");
 const hospitalDao = require("../models/hospitalDao");
 
@@ -101,4 +102,19 @@ const hospitalDataService = async (recordData) => {
   }
 };
 
-module.exports = { hospitalDataService };
+const getHospitalDataService = async (isAdmin, provinceId, reqQuery) => {
+  if (isAdmin && provinceId) {
+    throw new ErrorCreator("admin cannot have province_id", 400);
+  }
+  if (!isAdmin && !provinceId) {
+    throw new ErrorCreator("province_id not provided", 400);
+  }
+  const hospitalData = await hospitalDao.getHospitalList(provinceId, reqQuery);
+
+  return hospitalData
+};
+
+module.exports = { 
+  hospitalDataService,
+  getHospitalDataService
+};

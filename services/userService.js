@@ -1,8 +1,8 @@
-const ErrorCreator = require("../middlewares/errorCreator");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const secretKey = process.env.jwt_secret_key;
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const userDao = require("../models/userDao");
+const secretKey = process.env.jwt_secret_key;
+const ErrorCreator = require("../middlewares/errorCreator");
 
 const userSignupService = async (userData) => {
   const name = userData.name;
