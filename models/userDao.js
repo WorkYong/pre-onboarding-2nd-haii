@@ -37,4 +37,44 @@ const getUserByAccount = async (account) => {
   return user;
 };
 
-module.exports = { getUser, createUser, getUserByAccount };
+const isAdmin = async (admin_id)=>{
+  return await myDataSource.query(
+          `SELECT *
+          FROM users u 
+          WHERE u.is_admin = 1
+              AND ISNULL(u.province_id) 
+              AND u.id = ?`,
+          [admin_id]
+      );
+}
+
+const userUpdate = async (user_id, name, phone_number, province_id)=>{
+  return await myDataSource.query(
+      `UPDATE users
+      SET name  = ?
+          , phone_number = ?
+          , province_id = ?
+          WHERE id = ? `,
+      [name, phone_number, province_id, user_id]
+  );
+}
+
+const getUserByPhoneNumber = async (phone_number)=>{
+  return await myDataSource.query(
+          `SELECT EXISTS 
+          (SELECT *
+          FROM users u 
+          WHERE u.phone_number = ?
+          ) AS result`,
+          [phone_number]
+      );
+}
+
+module.exports = { 
+  getUser
+  , createUser
+  , getUserByAccount  
+  , isAdmin
+  , userUpdate
+  , getUserByPhoneNumber  
+};
