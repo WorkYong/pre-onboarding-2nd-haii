@@ -11,6 +11,12 @@ const authMiddleware = async(req, res, next) => {
     
     const user = jwt.verify(token, process.env.jwt_secret_key);
     
+    if(!user) {
+        const err = new Error("INVAILD_TOKEN")
+        err.statusCode = 403;
+        throw err;
+    }
+    
     req.user = user;
     next();
 };
