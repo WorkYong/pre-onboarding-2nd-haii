@@ -99,6 +99,7 @@ const signIn = async (account, password) => {
 
   return token;
 };
+
 module.exports = {
   userSignupService,
   signIn,
