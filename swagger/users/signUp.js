@@ -4,7 +4,7 @@
  *   /users:
  *     post:
  *       tags:
- *         - users
+ *         - user sign up
  *       summary: 회원가입
  *       description: 사용자의 이름,계정,이메일,휴대폰번호,비밀번호,대표관리자여부,담당지역코드를 요청받으면 회원가입하는 api 입니다.
  *       requestBody:

@@ -4,7 +4,7 @@
  *    /hospital:
  *      post:
  *        tags:
- *          - hospital
+ *          - create hospital
  *        summary: 치매센터 등록
  *        description: 대표관리자가 치매센터에 대한 데이터를 생성한다.
  *        parameters:
