@@ -5,7 +5,6 @@
 <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"/>&nbsp;
 <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white"/>&nbsp;
 ## 🏥 개요
-원티드 프리온보딩 백엔드 코스 2차 과제 입니다. 
 
 전국치매센터표준데이터 JSON 데이터 파일을 데이터베이스에 저장하고
 데이터를 조회해서 엑셀 파일로 다운로드하는 어플리케이션 입니다.
@@ -13,7 +12,7 @@
 어플리케이션 기능을 이용하기 위한 회원가입 기능부터 데이터베이스 저장 및 조회, 엑셀 다운로드까지의 모든 프로세스를 구현했습니다.
 
 - 개발기간: 2022.10.07 - 2022.10.10 (3일)
-- 개발인원: 김윤희, 박정용, 오인환, 음정민(PM), 전준영 (5명)
+- 개발인원: 박정용, 
 
 
 
@@ -64,8 +63,7 @@ $ node server.js
 
 ## 🏥 구현 기능에 대한 소개
 
-### 1. 회원가입 기능 (전준영)
-
+### 1. 회원가입 기능 
 ---
 
 - 각 API 테스트 시 필요한 상세 이용 방법
@@ -107,8 +105,7 @@ $ node server.js
   api명세의 작성법의 경우에는 swagger editor 홈페이지를 사용하여 작성했습니다.
   <br/>아직 익숙하지않아 에러코드의 경우 모두 400번으로 설정해두었는데 중복에러가 발생하여 401,2,3,4,5...로 설정하였습니다.
 
-### 2. 로그인 기능 (박정용)
-
+### 2. 로그인 기능
 ---
 
 - hearder에 authorization , req.body를 통하여 account, password를 받아옵니다.  
@@ -118,8 +115,7 @@ $ node server.js
 - 유효하지않는 토큰이거나 , 토큰이 없다면 에러를 발생시킵니다.
 - 모든것이 완료되면 로그인 성공 메세지와 함께 로그인이 완료됩니다.
 
-### 3. 회원 정보 수정 기능 (김윤희)
-
+### 3. 회원 정보 수정 기능
 ---
 
 - header에 토큰 값과 user_id(수정할 사용자의 고유 id 값), name(이름), phone_number(휴대폰 번호), 값들을 필수로 받습니다.
@@ -128,8 +124,7 @@ $ node server.js
 - 휴대폰 번호는 unique 제약 조건을 설정해두었기 때문에 DB에 데이터와 중복된다면 에러를 반환합니다.
 - DB에서 업데이트 된 시점을 알 수 있도록 컬럼을 추가했습니다.
 
-### 4. JSON 데이터 파싱 후, 데이터베이스 저장 (전준영(도우미: 오인환))
-
+### 4. JSON 데이터 파싱 후, 데이터베이스 저장 
 ---
 
 - 각 API 테스트 시 필요한 상세 이용 방법
@@ -162,8 +157,7 @@ $ node server.js
   <br/>처음에는 JSON 파일을 받아 각 컬럼들을 파싱하는 과정이 복잡하고 어려웠지만 결국 필요한 데이터는 변경하고 필요한 컬럼들을 데이터베이스에 저장하기위해 Object, map, includes, switch case 등을 더 공부하게 되는 계기였고, users 테이블에서 대표관리자의 province_id 값이 null 이되도록 null on 처리를 해두었는데 null이 되는것 보다는 대표관리자라는 명확한 코드를 부여하는 것이 낫다고 프로젝트 중간에 생각이 되었습니다. province 테이블에 따로 id를 두어 대표관리자 라는 행을 추가했으면 어떨까 생각을해보았습니다.
 
 
-### 5. 엑셀 다운로드 기능 (음정민)
-
+### 5. 엑셀 다운로드 기능 
 ---
 
 
@@ -225,7 +219,7 @@ $ node server.js
 
 ### Postman
 
-- 김윤희 : (회원정보 수정기능)  👉 [Postman API doc]
-- 박정용 : (로그인)  👉 [Postman API doc](https://documenter.getpostman.com/view/22204904/2s83ziN3eF)
-- 음정민 : (엑셀 다운로드)  👉 [Postman API doc](https://documenter.getpostman.com/view/22263423/2s83ziN3io)
-- 전준영 : (회원가입, 병원데이터생성) 👉 [Postman API doc](https://documenter.getpostman.com/view/22723440/2s83ziMP8u)
+-  (회원정보 수정기능)  👉 [Postman API doc]
+-  (로그인)  👉 [Postman API doc](https://documenter.getpostman.com/view/22204904/2s83ziN3eF)
+-  (엑셀 다운로드)  👉 [Postman API doc](https://documenter.getpostman.com/view/22263423/2s83ziN3io)
+-  (회원가입, 병원데이터생성) 👉 [Postman API doc](https://documenter.getpostman.com/view/22723440/2s83ziMP8u)
